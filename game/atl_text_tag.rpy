@@ -173,11 +173,18 @@ init python:
             def none_to_float(param):
                 if param is None:
                     return 0.0
+
+                try:
+                    return float(str(position(param).relative))
+                    pass
+                except Exception as e:
+                    print(e)
+
                 return param
             child_xpos = none_to_float(child_pos[0]) + none_to_float(child_pos[4])
             child_ypos = none_to_float(child_pos[1]) + none_to_float(child_pos[5])
 
-            render.blit(child_render, (child_xpos,child_ypos))
+            render.blit(child_render, (child_xpos, child_ypos))
             renpy.redraw(self, 0)
             return render
 
